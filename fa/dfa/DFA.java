@@ -1,11 +1,10 @@
 package fa.dfa;
 
-import java.util.Set;
+import fa.State;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
-import java.util.LinkedHashMap;
-
-import fa.State;
+import java.util.Set;
 
 /**
  * Represents a Deterministic Finite Automaton (DFA).
@@ -38,7 +37,16 @@ public class DFA implements DFAInterface {
 	@Override
 	public boolean addState(String name) {
 		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'addState'");
+		if (name == null) return false;
+		for (DFAState s :states){
+			if(name.equals(s.getName())) return false;
+
+		}
+		DFAState ns = new DFAState(name);
+		boolean isAdded = states.add(ns);
+		if (isAdded) delta.put(ns,new LinkedHashMap<>());
+		return isAdded;
+		
 	}
 
 	/**
