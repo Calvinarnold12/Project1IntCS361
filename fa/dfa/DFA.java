@@ -56,8 +56,9 @@ public class DFA implements DFAInterface {
 	 */
 	@Override
 	public boolean setFinal(String name) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'setFinal'");
+		State s = getState(name);
+		if (s== null) return false;
+		return finalStates.add((DFAState) s); 
 	}
 
 	/**
@@ -67,8 +68,10 @@ public class DFA implements DFAInterface {
 	 */
 	@Override
 	public boolean setStart(String name) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'setStart'");
+		State s = getState(name);
+		if (s== null) return false;
+		startState= (DFAState) s; 
+		return true;
 	}
 
 	/**
@@ -77,8 +80,7 @@ public class DFA implements DFAInterface {
 	 */
 	@Override
 	public void addSigma(char symbol) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'addSigma'");
+		sigma.add(symbol);
 	}
 
 	/**
@@ -99,8 +101,7 @@ public class DFA implements DFAInterface {
 	 */
 	@Override
 	public Set<Character> getSigma() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getSigma'");
+		return new LinkedHashSet<>(sigma); //returns a copy of sigma 
 	}
 
 	/**
@@ -110,8 +111,12 @@ public class DFA implements DFAInterface {
 	 */
 	@Override
 	public State getState(String name) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getState'");
+		if (name == null) return null; //if name provided empty, return null
+		for (DFAState s: states){
+			if (name.equals(s.getName())) return s; // return found state
+
+		}
+		return null; // if no matching state found
 	}
 
 	/**
@@ -121,8 +126,11 @@ public class DFA implements DFAInterface {
 	 */
 	@Override
 	public boolean isFinal(String name) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'isFinal'");
+		for(DFAState s:finalStates){
+			if(name.equals(s.getName())) return true;
+			
+		}
+		return false;
 	}
 
 	/**
@@ -132,8 +140,7 @@ public class DFA implements DFAInterface {
 	 */
 	@Override
 	public boolean isStart(String name) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'isStart'");
+		return startState.equals(getState(name));
 	}
 
 	/**
