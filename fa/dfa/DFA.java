@@ -9,6 +9,8 @@ import java.util.Set;
 /**
  * Represents a Deterministic Finite Automaton (DFA).
  * Implements the DFAInterface to provide a complete DFA implementation.
+ * @author Calvin Arnold
+ * @author Audrey Fitchett
  */
 public class DFA implements DFAInterface {
 	

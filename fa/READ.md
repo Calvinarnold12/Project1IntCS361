@@ -56,10 +56,12 @@ Can your program handle bad input? Is your program idiot-proof? How do
 you
 know? What are the known issues / bugs remaining in your program?
 DISCUSSION:
-Discuss the issues you encountered during programming (development)
-and testing. What problems did you have? What did you have to research
-and learn on your own? What kinds of errors did you get? How did you
-fix them?
+-Calvin: The most challenging part for this assignment for me was visualizing 
+the interactions of the hashmaps/hashsets in such a manner that I was not mixing
+them up in my head. Specifically,  the delta map was causing me grief when 
+implementing the transitions function. I kept losing my mental image when
+thinking about where key values were being mapped when testing. Eventually, 
+I just decided to write it down, and that helped.  
 What parts of the project did you find challenging? Is there anything
 that finally "clicked" for you in the process of working on this project?
 EXTRA CREDIT:
