@@ -91,8 +91,19 @@ public class DFA implements DFAInterface {
 	 */
 	@Override
 	public boolean accepts(String s) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'accepts'");
+		if (startState == null || s == null) return false;
+		DFAState currentState = startState;
+		
+		//Loops through each character in input sting
+		for (char c : s.toCharArray()) {
+			if (!sigma.contains(c)) return false; //rejects char if not in current alphabet
+			Map<Character, DFAState> transitions = delta.get(currentState);  //gets the transition map for current state
+			if (transitions == null) return false; //reject if somehow no transition row exists
+			DFAState nextState = transitions.get(c); //if no transitions defined for current symbol rejects char
+			if (nextState == null) return false;
+			currentState = nextState;
+		}
+		return finalStates.contains(currentState); //after processing all characters, accepts ended on a final state
 	}
 
 	/**
@@ -140,6 +151,7 @@ public class DFA implements DFAInterface {
 	 */
 	@Override
 	public boolean isStart(String name) {
+		if (startState == null) return false;
 		return startState.equals(getState(name));
 	}
 
@@ -161,8 +173,60 @@ public class DFA implements DFAInterface {
 	 */
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'toString'");
+		StringBuilder sb = new StringBuilder();
+		
+		// Q = { states }
+		sb.append("Q = { ");
+		for (DFAState s : states) {
+			sb.append(s.getName()).append(" ");
+		}
+		sb.append("}");
+		sb.append(System.lineSeparator());
+		
+		// Sigma = { symbols }
+		sb.append("Sigma = { ");
+		for (char c : sigma) {
+			sb.append(c).append(" ");
+		}
+		sb.append("}");
+		sb.append(System.lineSeparator());
+		
+		// delta table
+		sb.append("delta =");
+		sb.append(System.lineSeparator());
+		sb.append("\t");
+		for (char c : sigma) {
+			sb.append(c).append("\t");
+		}
+		sb.append(System.lineSeparator());
+		
+		for (DFAState s : states) {
+			sb.append(s.getName()).append("\t");
+			for (char c : sigma) {
+				DFAState next = delta.get(s).get(c);
+				if (next != null) {
+					sb.append(next.getName());
+				}
+				sb.append("\t");
+			}
+			sb.append(System.lineSeparator());
+		}
+		
+		// q0
+		sb.append("q0 = ");
+		if (startState != null) {
+			sb.append(startState.getName());
+		}
+		sb.append(System.lineSeparator());
+		
+		// F
+		sb.append("F = { ");
+		for (DFAState s : finalStates) {
+			sb.append(s.getName()).append(" ");
+		}
+		sb.append("}");
+		
+		return sb.toString();
 	}
 
 	/**
@@ -174,8 +238,26 @@ public class DFA implements DFAInterface {
 	 */
 	@Override
 	public boolean addTransition(String fromState, String toState, char onSymb) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'addTransition'");
+		// Get the actual state objects
+		State fromStateObj = getState(fromState);
+		State toStateObj = getState(toState);
+		
+		// Check if both states exist
+		if (fromStateObj == null || toStateObj == null) return false;
+		
+		// Check if symbol is in sigma
+		if (!sigma.contains(onSymb)) return false;
+		
+		// Cast to DFAState
+		DFAState from = (DFAState) fromStateObj;
+		DFAState to = (DFAState) toStateObj;
+		
+		// Get transition map for fromState and add the transition
+		Map<Character, DFAState> transitions = delta.get(from);
+		if (transitions == null) return false;  // ideally shouldn't happen if addState initialized properly
+		
+		transitions.put(onSymb, to);
+		return true;
 	}
 
 	/**
@@ -187,7 +269,46 @@ public class DFA implements DFAInterface {
 	 */
 	@Override
 	public DFA swap(char symb1, char symb2) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'swap'");
+		DFA copy = new DFA();
+		
+		// Copy all states
+		for (DFAState s : states) {
+			copy.addState(s.getName());
+		}
+		
+		// Copy all symbols
+		for (char c : sigma) {
+			copy.addSigma(c);
+		}
+		
+		// Copy transitions with swapped symbols
+		for (DFAState from : states) {
+			Map<Character, DFAState> transitions = delta.get(from);
+			if (transitions != null) {
+				for (char c : transitions.keySet()) {
+					DFAState to = transitions.get(c);
+					char actualSymbol = c;
+					
+					// Swap if this is one of the symbols
+					if (c == symb1) {
+						actualSymbol = symb2;
+					} else if (c == symb2) {
+						actualSymbol = symb1;
+					}
+					copy.addTransition(from.getName(), to.getName(), actualSymbol);
+				}
+			}
+		}
+		// Copy start state
+		if (startState != null) {
+			copy.setStart(startState.getName());
+		}
+		
+		// Copy final states
+		for (DFAState s : finalStates) {
+			copy.setFinal(s.getName());
+		}
+		
+		return copy;
 	}
 }
