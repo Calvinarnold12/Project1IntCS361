@@ -7,55 +7,27 @@
 
 ## OVERVIEW:
 
-Concisely explain what the program does. If this exceeds a couple  
-of sentences, you're going too far. The details go in other  
-sections.
-
----
+This program simulates a deterministic finite automaton.
 
 ## INCLUDED FILES:
 
-List the files required for the project with a brief  
-explanation of why each is included.
-
-e.g.
-
-- Class1.java - source file  
-- Class2.java - source file  
-- README - this file  
-
----
+* DFA.java - source file
+* DFAInterface.java - source file
+* DFAState.java - source file
+* FAInterface.java - source file
+* State.java - source file 
+* DFATest.java - source file
+* README - this file
 
 ## COMPILING AND RUNNING:
 
-Give the command for compiling the program, the command  
-for running the program, and any usage instructions the  
-user needs.
-
-These are command-line instructions for a system like onyx.  
-They have nothing to do with Eclipse or any other IDE. They  
-must be specific - assume the user has Java installed, but  
-has no idea how to compile or run a Java program from the  
-command-line.
-
-e.g.
-
-From the directory containing all source files, compile the  
+From the directory containing all source files, compile the
 driver class (and all dependencies) with the command:
-
-```
-$ javac Class1.java
-```
-
+$ javac DFATest.java
 Run the compiled class file with the command:
+$ java DFATest
 
-```
-$ java Class1
-```
-
-Console output will give the results after the program finishes.
-
----
+There is no user input for this program. Once the program is finished running, output will show up in the console. 
 
 ## PROGRAM DESIGN AND IMPORTANT CONCEPTS:
 
@@ -123,6 +95,8 @@ run?
 
 Can your program handle bad input? Is your program idiot-proof? How do  
 you know? What are the known issues / bugs remaining in your program?
+
+We tested the program using the tests provided in DFATest.java. All given tests pass. 
 
 ---
 
