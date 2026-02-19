@@ -150,7 +150,7 @@ be sure to call it out so the grader does not overlook it.
 
 https://www.w3schools.com/java/java_hashset.asp  
 https://www.w3schools.com/Java/java_hashmap.asp  
-
+Used AI to format markdown for readme document
 All sources used outside of lecture notes, slides, and the textbook need  
 to be cited here. If you used websites, used GenAI, asked your dad or your  
 boss or your roommate for help then you must cite those resources. I am not  
