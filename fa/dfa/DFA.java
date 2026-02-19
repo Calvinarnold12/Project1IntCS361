@@ -36,7 +36,6 @@ public class DFA implements DFAInterface {
 	 */
 	@Override
 	public boolean addState(String name) {
-		// TODO Auto-generated method stub
 		if (name == null) return false;
 		for (DFAState s :states){
 			if(name.equals(s.getName())) return false;
