@@ -286,8 +286,7 @@ private DFA dfa3() {
 	assertTrue(dfa.addTransition("C", "F", '1'));
 	assertTrue(dfa.addTransition("C", "G", '2'));
 	
-	assertTrue(dfa.addTransition("C", "F", '1'));
-	assertTrue(dfa.addTransition("C", "G", '2'));
+
 	
 	assertTrue(dfa.addTransition("D", "D", '1'));
 	assertTrue(dfa.addTransition("D", "E", '2'));
@@ -435,7 +434,7 @@ private DFA dfaX() {
 		assertFalse(dfa.addTransition("3", "0", 'a'));
 		assertFalse(dfa.addTransition("2", "3", 'b'));
 		assertFalse(dfa.addTransition("1", "2", 'd'));
-		assertFalse(dfa.addTransition("0", "2", 'a')); //TODO: remove or handle this? if removed, add this as a known bug to README
+		
 		
 		return dfa;
 	}

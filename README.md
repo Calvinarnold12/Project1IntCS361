@@ -106,6 +106,7 @@ alphabet or with a state that doesn't exist.
 
 -Calvin: The most challenging part of this assignment was visualizing the interaction between the HashMap and HashSet data structures, particularly when implementing the transition function. The nested delta map (mapping a state to another map of symbol-to-state transitions) was difficult to conceptualize mentally. I frequently found myself losing track of which keys mapped to which values during debugging.
 
+EDIT- I had to fix a bug where duplicate transitions were able to happen, I would not have noticed this without Audreys help, Thank you! 
 I also reviewed these W3schools articles on the java hashmap/set packages.
 
 https://www.w3schools.com/java/java_hashset.asp  
