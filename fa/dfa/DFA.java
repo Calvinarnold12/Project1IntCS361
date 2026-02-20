@@ -256,7 +256,13 @@ public class DFA implements DFAInterface {
 		// Get transition map for fromState and add the transition
 		Map<Character, DFAState> transitions = delta.get(from);
 		if (transitions == null) return false;  // ideally shouldn't happen if addState initialized properly
-		
+		    // Check for existing transition
+		if (transitions.containsKey(onSymb)) {
+			System.err.println("Error: Transition already exists for state '" + fromState + "' on symbol '" + onSymb + "'");
+			return false;
+		}
+
+
 		transitions.put(onSymb, to);
 		return true;
 	}
