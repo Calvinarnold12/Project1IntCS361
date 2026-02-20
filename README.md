@@ -7,7 +7,9 @@
 
 ## OVERVIEW:
 
-This program simulates a deterministic finite automaton.
+This program simulates a deterministic finite automaton. It stores the alphabet, states, 
+start state, final states, and transition table, and can verify whether or not a 
+string would be accepted by the DFA. 
 
 ## INCLUDED FILES:
 
@@ -89,14 +91,14 @@ This interface ensures the DFA adheres to formal automata structure.
 
 ## TESTING:
 
-How did you test your program to be sure it works and meets all of the  
-requirements? What was the testing strategy? What kinds of tests were  
-run?
+We tested the program using the tests provided in DFATest.java and an
+additional test created by us to check what happens if an alphabet
+has 3 symbols and if the start state is also the final state. Our
+program seems fairly idiot-proof, as there are ways to hand if
+someone tries to add a state that's already exists in the set of 
+states, or create a transition that using a symbol outside of the 
+alphabet or with a state that doesn't exist.   
 
-Can your program handle bad input? Is your program idiot-proof? How do  
-you know? What are the known issues / bugs remaining in your program?
-
-We tested the program using the tests provided in DFATest.java. All given tests pass. 
 
 ---
 
@@ -110,6 +112,12 @@ https://www.w3schools.com/java/java_hashset.asp
 https://www.w3schools.com/Java/java_hashmap.asp  
 
 What helped significantly was writing out a visual representation of the structure on paper.
+
+Audrey: Some things I struggled with were understanding what was going on in the tests, and conceptualizing how the dfa swap
+method was supposed to work. Drawing out each DFA in the given tests really helped me understand the things each test was
+looking at, and what things could be tested that were missing. Drawing out the dfa swapped helped a bit too, but what 
+really helped understand the dfa swap was the debugger. It was nice to compare what the machine was seeing to what I
+had written out. 
 
 
 
